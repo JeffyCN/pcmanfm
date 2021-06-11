@@ -2386,6 +2386,7 @@ static void update_background(FmDesktop* desktop, int is_it)
     XChangeProperty(xdisplay, GDK_WINDOW_XID(root),
                     XA_XROOTMAP_ID, XA_PIXMAP, 32, PropModeReplace, (guchar*)&xpixmap, 1);
 
+#if 0 // avoid setting the xroot's background, which would affect other monitors
     XGrabServer (xdisplay);
 
 #if 0
@@ -2422,6 +2423,7 @@ static void update_background(FmDesktop* desktop, int is_it)
 
     XFlush(xdisplay);
     XUngrabServer(xdisplay);
+#endif
 
     if(pix)
         g_object_unref(pix);
